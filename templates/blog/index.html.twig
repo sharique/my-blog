@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog index{% endblock %}
+
+{% block body %}
+    <h1>Blog index</h1>
+
+    <table class="table hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Body</th>
+            <th>actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for blog in blogs %}
+          <tr>
+              <td>{{ blog.id }}</td>
+              <td>
+              <a href="{{ path('blog_show', {'id': blog.id}) }}" > {{ blog.title }} </a></td>
+              <td>
+              {% set text = blog.body %}
+              {{ text|length > 200 ? text|slice(0, 200) ~ '...' : text }}
+              </td>
+              <td>
+                  <a href="{{ path('blog_show', {'id': blog.id}) }}" class="button">show</a>
+                  <a href="{{ path('blog_edit', {'id': blog.id}) }}" class="button">edit</a>
+              </td>
+          </tr>
+      {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('blog_new') }}" class="button">Create new</a>
+{% endblock %}
