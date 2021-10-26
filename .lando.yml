@@ -5,7 +5,16 @@ config:
   php: "8.0"
   database: mariadb:10.5
   composer_version: 2-latest
+proxy:
+  adminer:
+      - adminer.my-blog.lndo.site
 services:
+  adminer:
+    type: compose
+    services:
+      image: dehy/adminer
+      command: /bin/s6-svscan /etc/services.d
+    portforward: true
   appserver:
     build:
       - composer install
