@@ -1,60 +1,65 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8"/>
-  <title>
-    {% block title %}
-      Welcome to My Blog!
-    {% endblock %}
-  </title>
-  {% block stylesheets %}
-    {{ encore_entry_link_tags('app') }}
-  {% endblock %}
+	<head>
+		<meta charset="UTF-8"/>
+		<title>
+			{% block title %}
+				Welcome to My Blog!
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
-  {% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
-  {% endblock %}
-</head>
-<body>
-<div class="grid-container">
-  <div class="grid-x grid-margin-x">
-    <header class="cell">
-      <h1>
-        My Blog
-      </h1>
-      <div class="login-menu">
-        {% if is_granted('ROLE_USER') %}
-          <div>
-            <a href="{{ path('logout') }}" class="button">Logout</a>
-          </div>
-        {% else %}
-          <div>
-            <a href="{{ path('login') }}" class="button">Login</a>
-            <a href="{{ path('app_register') }}" class="button">Register</a>
-          </div>
-        {% endif %}
-      </div>
-      <nav class="top-bar">
-        <ul class="menu vertical medium-horizontal dropdown"
-            data-responsive-menu="drilldown medium-dropdown"
-            data-dropdown-menu>
-          <li><a href="{{ path('home') }}">Home</a></li>
-          <li>
-            <a href="{{ path('blog_index') }}">Blogs</a>
-            <ul class="menu">
-              <li><a href="{{ path('blog_new') }}">Create new blog</a></li>
-            </ul>
-          </li>
-          <li><a href="{{ path('tag_index') }}">Tags</a></li>
-        </ul>
-      </nav>
-    </header>
-    <div class="cell">
-      {% block body %}
-
-      {% endblock %}
-    </div>
-  </div>
-</div>
-</body>
-</html>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		<div class="grid-container">
+			<div class="grid-x grid-paddding-y">
+				<header class="cell">
+					<div class="clearfix">
+						<div class="float-left">
+							<h1>
+								My Blog
+							</h1>
+						</div>
+						<div class="login-menu float-right">
+							{% if is_granted('ROLE_USER') %}
+								<div>
+									<a href="{{ path('logout') }}" class="button">Logout</a>
+								</div>
+							{% else %}
+								<div>
+									<a href="{{ path('login') }}" class="button">Login</a>
+									<a href="{{ path('app_register') }}" class="button">Register</a>
+								</div>
+							{% endif %}
+						</div>
+					</div>
+					<nav class="top-bar">
+						<ul class="menu vertical medium-horizontal dropdown" data-responsive-menu="drilldown medium-dropdown" data-dropdown-menu>
+							<li>
+								<a href="{{ path('home') }}">Home</a>
+							</li>
+							<li>
+								<a href="{{ path('blog_index') }}">Blogs</a>
+								<ul class="menu">
+									<li>
+										<a href="{{ path('blog_new') }}">Create new blog</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="{{ path('tag_index') }}">Tags</a>
+							</li>
+						</ul>
+					</nav>
+				</header>
+				<main class="cell"> {% block body %}{% endblock %}
+					</div>
+				</main>
+			</div>
+		</body>
+	</html>

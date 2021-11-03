@@ -1,6 +1,6 @@
 @import '~foundation-sites/scss/foundation';
 
-$topbar-background: #cccccc;
+@import './colors.scss';
 
 /// include all modules of foundation
 @include foundation-everything;
@@ -41,3 +41,5 @@ $topbar-background: #cccccc;
 // @include foundation-title-bar;
 // @include foundation-tooltip;
 // @include foundation-top-bar;
+
+@import './custom.scss';
