@@ -1,5 +1,5 @@
 # My Blog
-This is a decoupled symfony application for blogging.
+This is a decoupled blogging application build using Symfony framework and ReactJS.
 
 # Local setup
 
@@ -12,7 +12,9 @@ This is a decoupled symfony application for blogging.
 
 # Steps
 * Run `lando start`
-* Run `composer install`
-* Run `npm ci` or `npm install`
-* Run `npm run build`
-*
+* Optional - Run `composer install` (This also runs as part on lando start)
+* Install node modules `npm ci` or `npm install`
+* Build frontend assets `npm run build`
+* Ssh into container using `lando ssh`
+* Run migrations `./bin/console doctrine:migrations:list`
+* Install assets (like ckeditor) using `./bin/console assests:install`

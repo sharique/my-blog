@@ -2,13 +2,18 @@ h1, h2, h3 {
   font-weight: bold;
 }
 
-body{
+body {
   background-color: $first;
 }
-header {
+
+header,
+footer {
   background-color: $second;
   color: $fourth;
+  padding: $global-padding;
 }
+
 main {
   background-color: $fourth;
+  padding: $global-padding;
 }
