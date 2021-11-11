@@ -14,7 +14,8 @@ class BlogType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('body', CKEditorType::class)
+            ->add('body',CKEditorType::class)
+            ->add('Tags')
         ;
     }
 

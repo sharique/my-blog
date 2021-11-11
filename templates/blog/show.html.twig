@@ -12,20 +12,26 @@
   <div class="blog-body">
     {{ blog.body|raw }}
   </div>
+  <div class="tags">
+    <label class=""> Tags :</label>
+    {% for tag in blog.tags %}
+      {{ tag.name }}
+    {% endfor %}
+  </div>
 
-  <a href="{{ path('blog_index') }}" class="button">back to list</a>
+  <div class="button-group">
+    <a href="{{ path('blog_index') }}" class="button">back to list</a>
 
-  <a href="{{
-    path(
+    <a href="{{ path(
       'blog_edit',
       {
         id: blog.id
       }
-    )
-    }}"
-    class="button">
-    edit
-  </a>
+    ) }}"
+       class="button">
+      edit
+    </a>
 
-  {{ include('blog/_delete_form.html.twig') }}
+    {{ include('blog/_delete_form.html.twig') }}
+  </div>
 {% endblock %}

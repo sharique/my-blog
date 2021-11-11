@@ -16,8 +16,10 @@
         button_label: 'Update'
       }
     ) }}
-    <a href="{{ path('blog_index') }}" class="button">back to list</a>
-    {{ include('blog/_delete_form.html.twig') }}
+    <div class="button-group">
+      <a href="{{ path('blog_index') }}" class="button">back to list</a>
+      {{ include('blog/_delete_form.html.twig') }}
+    </div>
   {% else %}
     {{ include('403.html.twig') }}
   {% endif %}
