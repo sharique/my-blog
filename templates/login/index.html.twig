@@ -4,8 +4,13 @@
 
 {% block body %}
   <div class="login-wrapper">
+    {% for flash_message in app.session.flashBag.get('error') %}
+      <div class="callout alert" role="alert">
+        {{ flash_message }}
+      </div>
+    {% endfor %}
     {% if error %}
-      <div class="error"> {{ error.messageKey| trans(error.messageData, 'security') }}</div>
+      <div class="callout alert"> {{ error.messageKey| trans(error.messageData, 'security') }}</div>
     {% endif %}
     <form action="{{ path('login') }}" class="login-form" method="post">
       <label for="username">Email:</label>

@@ -8,6 +8,23 @@ config:
 proxy:
   adminer:
       - adminer.my-blog.lndo.site
+tooling:
+  console:
+    service: appserver
+    cmd: /app/bin/console
+  phpunit:
+    service: appserver
+    cmd: /app/vendor/bin/phpunit
+  xdebug-on:
+    service: appserver
+    description: Enable xdebug for apache.
+    cmd: "docker-php-ext-enable xdebug && /etc/init.d/apache2 reload"
+    user: root
+  xdebug-off:
+    service: appserver
+    description: Disable xdebug for apache.
+    cmd: "rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && /etc/init.d/apache2 reload"
+    user: root
 services:
   adminer:
     type: compose

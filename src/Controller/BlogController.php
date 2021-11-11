@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
 
 #[Route('/blog')]
@@ -33,7 +34,7 @@ class BlogController extends AbstractController
   public function new(Request $request): Response
   {
     // Check if user is logged in.
-    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED', null, 'Please login to continue.');
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
     $blog = new Blog();
     $form = $this->createForm(BlogType::class, $blog);
     $form->handleRequest($request);
@@ -63,6 +64,8 @@ class BlogController extends AbstractController
   #[Route('/{id}/edit', name: 'blog_edit', methods: ['GET', 'POST'])]
   public function edit(Request $request, Blog $blog): Response
   {
+    // Check if user is logged in.
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
     $form = $this->createForm(BlogType::class, $blog);
     $form->handleRequest($request);
 
@@ -81,6 +84,7 @@ class BlogController extends AbstractController
   #[Route('/{id}', name: 'blog_delete', methods: ['POST'])]
   public function delete(Request $request, Blog $blog): Response
   {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
     if ($this->isCsrfTokenValid('delete' . $blog->getId(), $request->request->get('_token'))) {
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->remove($blog);
