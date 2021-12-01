@@ -8,7 +8,10 @@
   <h2>
     {{ blog.title }}
   </h2>
-
+<div class="created">
+  Create by :
+  {{ blog.author }} at {{ blog.created|date("d/m/Y") }}
+</div>
   <div class="blog-body">
     {{ blog.body|raw }}
   </div>

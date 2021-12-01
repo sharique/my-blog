@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Blog;
 use App\Form\BlogType;
 use App\Repository\BlogRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,6 +41,13 @@ class BlogController extends AbstractController
 
     if ($form->isSubmitted() && $form->isValid()) {
       $entityManager = $this->getDoctrine()->getManager();
+      $user = $this->getUser();
+      if ($user) {
+        $blog->setAuthor($user);
+      }
+      $time = new DateTime();
+      $blog->setCreated($time);
+      $blog->setUpdated($time);
       $entityManager->persist($blog);
       $entityManager->flush();
 
