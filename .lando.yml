@@ -35,3 +35,5 @@ services:
   appserver:
     build:
       - composer install
+      - ./bin/console doctrine:migrations:migrate
+      - ./bin/console assets:install

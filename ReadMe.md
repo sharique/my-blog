@@ -16,5 +16,5 @@ This is a decoupled blogging application build using Symfony framework and React
 * Install node modules `npm ci` or `npm install`
 * Build frontend assets `npm run build`
 * Ssh into container using `lando ssh`
-* Run migrations `./bin/console doctrine:migrations:list`
-* Install assets (like ckeditor) using `./bin/console assests:install`
+* Run migrations `./bin/console doctrine:migrations:migrate`
+* Install assets (like ckeditor) using `./bin/console assets:install`
