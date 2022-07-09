@@ -6,6 +6,7 @@ use App\Entity\Blog;
 use App\Form\BlogType;
 use App\Repository\BlogRepository;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +32,7 @@ class BlogController extends AbstractController
   }
 
   #[Route('/new', name: 'blog_new', methods: ['GET', 'POST'])]
-  public function new(Request $request): Response
+  public function new(Request $request, EntityManagerInterface $entityManager): Response
   {
     // Check if user is logged in.
     $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
@@ -40,7 +41,6 @@ class BlogController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-      $entityManager = $this->getDoctrine()->getManager();
       $user = $this->getUser();
       if ($user) {
         $blog->setAuthor($user);
@@ -69,7 +69,7 @@ class BlogController extends AbstractController
   }
 
   #[Route('/{id}/edit', name: 'blog_edit', methods: ['GET', 'POST'])]
-  public function edit(Request $request, Blog $blog): Response
+  public function edit(Request $request, Blog $blog, EntityManagerInterface $entityManager): Response
   {
     // Check if user is logged in.
     $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
@@ -77,8 +77,7 @@ class BlogController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-      $this->getDoctrine()->getManager()->flush();
-
+      $entityManager->flush();
       return $this->redirectToRoute('blog_index', [], Response::HTTP_SEE_OTHER);
     }
 
@@ -89,11 +88,10 @@ class BlogController extends AbstractController
   }
 
   #[Route('/{id}', name: 'blog_delete', methods: ['POST'])]
-  public function delete(Request $request, Blog $blog): Response
+  public function delete(Request $request, Blog $blog, EntityManagerInterface $entityManager): Response
   {
     $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
     if ($this->isCsrfTokenValid('delete' . $blog->getId(), $request->request->get('_token'))) {
-      $entityManager = $this->getDoctrine()->getManager();
       $entityManager->remove($blog);
       $entityManager->flush();
     }
