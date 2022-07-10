@@ -12,14 +12,12 @@ import './styles/app.scss';
 import './bootstrap';
 
 import 'foundation-sites/dist/js/foundation.js'
-import 'select2/dist/js/select2.full'
 
 import $ from 'jquery'
 $(document).foundation();
 
 $(function () {
     console.log('js is working');
-    $('#blog_Tags').select2();
 });
 
 // Create global $ and jQuery variables to be used outside this script
