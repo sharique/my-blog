@@ -20,9 +20,4 @@ class BlogPostTest extends WebTestCase
     $client->followRedirects(true);
     $this->assertResponseRedirects('/login');
   }
-
-  public function testBlogPost(): void
-  {
-
-  }
 }
