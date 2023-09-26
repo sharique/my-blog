@@ -1,0 +1,17 @@
+@media screen and (min-width: 640px){
+  .container {
+      display: flex;
+  }
+}
+
+.content {
+  flex: 4;
+}
+.sidebar {
+  flex: 1;
+}
+
+.wrapper {
+  margin: auto;
+  max-width: 75rem;
+}
