@@ -148,7 +148,7 @@ class Blog
   /**
    * @ORM\PreUpdate()
    */
-  public function preUpdate()
+  public function preUpdate(): void
   {
     $this->updated = new DateTime();
   }

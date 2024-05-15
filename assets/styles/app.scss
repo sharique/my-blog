@@ -5,8 +5,53 @@
 // Navigation
 
 nav {
+  background-color: $third;
   ul {
-    display: flex;
-    list-style: none;
+    font-size: 0;
+    list-style-type: none;
+
+    // initial li
+    li {
+      font-size: 1rem;
+      font-weight: 400;
+
+      display: inline-block;
+      padding: 15px;
+      position: relative;
+
+      // secondary ul
+      ul {
+        display: none;
+      }
+
+      // initial li:hover
+      &:hover {
+        cursor: pointer;
+
+        // secondary ul visibility change
+        ul {
+          display: block;
+          margin-top: 15px;
+
+          width: 200px;
+          left: 0;
+
+          position: absolute;
+
+          // secondary li
+          li {
+            display: block;
+
+            span {
+              float: right;
+              padding: 2px 5px;
+              text-align: center;
+              font-size: .8rem;
+              border-radius: 3px;
+            }
+          }
+        }
+      }
+    }
   }
 }
