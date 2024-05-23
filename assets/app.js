@@ -11,8 +11,6 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
-import 'foundation-sites/dist/js/foundation.js'
-
 import $ from 'jquery'
 $(document).foundation();
 

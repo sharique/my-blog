@@ -8,7 +8,6 @@
     "@symfony/ux-autocomplete": "file:vendor/symfony/ux-autocomplete/assets",
     "@symfony/webpack-encore": "^4.0.0",
     "core-js": "^3.23.0",
-    "foundation-sites": "^6.7.5",
     "node-sass": "^8.0.0",
     "regenerator-runtime": "^0.13.9",
     "sass-loader": "^13.2.0",
